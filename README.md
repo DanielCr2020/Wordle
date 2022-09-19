@@ -1,5 +1,5 @@
 # Wordle
-Simple, functional Wordle clode made in Python
+Simple, functional Wordle clone made in Python
 
 
 Wordle clone in python that reads from a file a list of words and picks a random one. 
