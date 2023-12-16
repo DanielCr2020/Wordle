@@ -21,7 +21,7 @@ for line in data:
 
 file.close()
 
-randWord=data[random.randrange(0,2310)]
+randWord=data[random.randrange(0,2311)]
 randWord=randWord.replace("\n","")
 validGuesses=data[random.randrange(0,lines)]
 validGuesses=validGuesses.replace("\n","")
@@ -42,7 +42,7 @@ def play():
     while(guesses<6 and guessed==False):
         guess=input("Guess "+str(guesses+1)+"/6: ")
         while guess+"\n" not in data:
-            guess=input("'"+guess+"'"+ " is not in word list: ")
+            guess=input("'"+guess+"'"+ " is not in word list. Try again: ")
         guesses+=1
         currLine="_ _ _ _ _"
         if guess==randWord:
@@ -69,10 +69,13 @@ def play():
 
     if guessed==False:
         print(randWord)
+        # print("\nType 'play()' to play. A new random word will be chosen each time.")
     else:
         print(output)
         print("Congratulations! You guessed the word "+"'"+randWord+"' "+"in "+
         str(guesses)+(" guess!" if guesses==1 else " guesses!"))
+        print("\nType 'play()' to play. A new random word will be chosen each time.")
+
 
 play()
-print("\nType 'play()' to play. A new random word will be chosen each time.")
+#print("\nType 'play()' to play. A new random word will be chosen each time.")
