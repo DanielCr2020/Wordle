@@ -26,11 +26,7 @@ randWord=randWord.replace("\n","")
 validGuesses=data[random.randrange(0,lines)]
 validGuesses=validGuesses.replace("\n","")
 
-
-'''
-use currLine to build string. Replace each underscore with a letter
-'''
-
+# use currLine to build string. Replace each underscore with a letter
 
 def play():
     randWord=data[random.randrange(0,2310)]
@@ -38,15 +34,15 @@ def play():
     guesses=0
     guessed=False
     output=""
-    temp=str(randWord)
+    temp=str(randWord)      # We need to make a deep copy, since we modify the string in place
     while(guesses<6 and guessed==False):
-        guess=input("Guess "+str(guesses+1)+"/6: ")
+        guess=input(f"Guess {str(guesses+1)}/6: ").lower()
         while guess+"\n" not in data:
-            guess=input("'"+guess+"'"+ " is not in word list. Try again: ")
+            guess=input(f"'{guess}' is not in word list. Try again: ").lower()
         guesses+=1
-        currLine="_ _ _ _ _"
+        currLine="_ _ _ _ _      "+guess
         if guess==randWord:
-            for j in range(len(guess)):
+            for j in range(len(guess)):         # The *2 stuff is for the spacing and the underscores
                 currLine=currLine.replace(currLine[j*2],guess[j].upper(),1)
                 currLine=currLine[:j*2]+guess[j].upper()+currLine[(j*2)+1:]
             guessed=True
@@ -64,18 +60,10 @@ def play():
         output+=currLine+"\n"
         temp=randWord
         print(output)
-
-    #print(output)
-
     if guessed==False:
         print(randWord)
-        # print("\nType 'play()' to play. A new random word will be chosen each time.")
     else:
         print(output)
-        print("Congratulations! You guessed the word "+"'"+randWord+"' "+"in "+
-        str(guesses)+(" guess!" if guesses==1 else " guesses!"))
-        print("\nType 'play()' to play. A new random word will be chosen each time.")
-
+        print(f"Congratulations! You guessed the word '{randWord}' in {str(guesses)} guess{'es' if guesses>1 else ''}!")
 
 play()
-#print("\nType 'play()' to play. A new random word will be chosen each time.")
